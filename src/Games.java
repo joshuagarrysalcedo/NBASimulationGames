@@ -8,12 +8,15 @@ public class Games {
     public Games(Participants team1, Participants team2) {
         this.team1 = team1;
         this.team2 = team2;
-        this.possessions = 140; // a total of 140 possessions per game is simulated not the time
+        this.possessions = 200; // a total of 200 possessions per game is simulated not the time
+        simulateGame();
+
     }
 
-        public void SimulateGame(){
+        public void simulateGame(){
                 for(int i = 0; i < possessions; i++){
-                    if((i / 2) == 0){ // means this is even.
+                    int num = ran.nextInt(2);
+                    if(num == 1){ // means this is even.
                             shotAttempt(team1);
                     }else{
                             shotAttempt(team2);
@@ -33,7 +36,7 @@ public class Games {
         }
             else{
             team2.setWinner(true);
-            System.out.println(team1.getParticipant().getTeamName() + " lost against " + team2.getParticipant().getTeamName());
+            System.out.println(team2.getParticipant().getTeamName() + " won against " + team1.getParticipant().getTeamName());
         }
             updateStats(team1);
             updateStats(team2);
@@ -76,12 +79,15 @@ public class Games {
         }
 
         public void displayBoxScore(){
-            System.out.printf("Teams: %15s\t%15s\n", team1.getParticipant().getTeamName(), team2.getParticipant().getTeamName());
-            System.out.printf("Score: %15d\t%15d\n", team1.getScore(), team2.getScore());
-            System.out.printf("  FG: %15d/%d\t%15d/%d", team1.getFieldGoalMade(), team1.getFieldGoalAttempts(), team2.getFieldGoalMade(), team2.getFieldGoalAttempts());
-            System.out.printf(" FG%%: %18.2f%%\t%18.2f%%", team1.getFieldGoalPercent(), team2.getFieldGoalPercent());
-            System.out.printf("2-FG: %15d/%d\t%15d/%d", team1.getTwoPointMade(), team1.getTwoPointAttempts(), team2.getTwoPointMade(), team2.getTwoPointAttempts());
-            System.out.printf("2-FG%%: %18.2f%%\t%18.2f%%", team1.getTwoPointFieldGoalPercent(), team2.getTwoPointFieldGoalPercent());
+            System.out.printf("Teams: %15s\t%20s\n", team1.getParticipant().getTeamName(), team2.getParticipant().getTeamName());
+            System.out.println("------------------------------------");
+            System.out.printf("Score: %15d\t%20d\n", team1.getScore(), team2.getScore());
+            System.out.printf("  FG: %15d/%d\t%15d/%d\n", team1.getFieldGoalMade(), team1.getFieldGoalAttempts(), team2.getFieldGoalMade(), team2.getFieldGoalAttempts());
+            System.out.printf(" FG%%: %18.2f%%\t%18.2f%%\n", team1.getFieldGoalPercent(), team2.getFieldGoalPercent());
+            System.out.printf("2-FG: %15d/%d\t%15d/%d\n", team1.getTwoPointMade(), team1.getTwoPointAttempts(), team2.getTwoPointMade(), team2.getTwoPointAttempts());
+            System.out.printf("2-FG%%: %18.2f%%\t%18.2f%%\n", team1.getTwoPointFieldGoalPercent(), team2.getTwoPointFieldGoalPercent());
+            System.out.printf("3-FG: %15d/%d\t%15d/%d\n", team1.getThreePointMade(), team1.getThreePointAttempts(), team2.getThreePointMade(), team2.getThreePointAttempts());
+            System.out.printf("3-FG%%: %18.2f%%\t%18.2f%%\n", team1.getThreePointFieldGoalPercent(), team2.getThreePointFieldGoalPercent());
         }
 
 

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Team {
+public class Team implements Comparable<Team>{
     private String teamName;
     private int wins;
     private int loss;
@@ -21,6 +21,17 @@ public class Team {
     private double FieldGoalPercent;
     private double threePointFGPercent;
     private double twoPointFGPercent;
+
+    @Override
+    public int compareTo(Team t) {
+        if(this.wins > t.wins){
+            return -1;
+        }else if(this.wins == t.wins){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
 
     public Team(String teamName, double probabilityToShootThreePoints, double abilityToShootTwoPoints, double abilityToSHootThreePoints) {
         this.teamName = teamName;
@@ -62,6 +73,13 @@ public class Team {
     public void setTotalFieldGoalMade(int totalFieldGoalMade) {
         this.totalFieldGoalMade += totalFieldGoalMade;
     }
+    public void displayStats(){
+        System.out.println("------------" + getTeamName() + "------------" );
+        System.out.printf("  wins: %5d\t loss: %5d\n", getWins(), getLoss());
+        System.out.printf("  FG%%: %10.2f%%\n", getFieldGoalPercent());
+        System.out.printf("2-FG%%: %10.2f%%\n", getTwoPointFGPercent());
+        System.out.printf("3-FG%%: %10.2f%%\n", getThreePointFGPercent());
+    }
 
     public String getTeamName() {
         return teamName;
@@ -96,14 +114,17 @@ public class Team {
     }
 
     public double getFieldGoalPercent() {
+        this.FieldGoalPercent = ((double)getTotalFieldGoalMade()/getTotalFieldGoalAttempts()) * 100;
         return FieldGoalPercent;
     }
 
     public double getThreePointFGPercent() {
+        this.threePointFGPercent = ((double)getTotalthreePointMade()/getTotalThreePointAttempts()) * 100;
         return threePointFGPercent;
     }
 
     public double getTwoPointFGPercent() {
+        this.twoPointFGPercent = ((double)getTotalTwoPointMade()/getTotalTwoPointAttempts()) * 100;
         return twoPointFGPercent;
     }
 

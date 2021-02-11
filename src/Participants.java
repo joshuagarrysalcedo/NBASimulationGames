@@ -15,6 +15,16 @@ public class Participants {
 
     public Participants(Team participant) {
         this.participant = participant;
+        this.Score = 0;
+        this.FieldGoalAttempts = 0;
+        this.FieldGoalMade = 0;
+        this.FieldGoalPercent = 0;
+        this.twoPointAttempts = 0;
+        this.twoPointMade = 0;
+        this.twoPointFieldGoalPercent = 0;
+        this.threePointAttempts = 0;
+        this.threePointMade = 0;
+        this.ThreePointFieldGoalPercent = 0;
     }
 
     public Team getParticipant() {
@@ -39,6 +49,7 @@ public class Participants {
 
     public void setTwoPointMade(int twoPointMade) {
         this.twoPointMade += twoPointMade;
+        setFieldGoalMade(1);
     }
 
     public void setThreePointAttempts(int threePointAttempts) {
@@ -47,6 +58,7 @@ public class Participants {
 
     public void setThreePointMade(int threePointMade) {
         this.threePointMade += threePointMade;
+        setFieldGoalMade(1);
     }
 
     public int getScore() {
@@ -62,6 +74,7 @@ public class Participants {
     }
 
     public double getFieldGoalPercent() {
+        this.FieldGoalPercent = ((double)getFieldGoalMade() / getFieldGoalAttempts()) * 100;
         return FieldGoalPercent;
     }
 
@@ -74,6 +87,7 @@ public class Participants {
     }
 
     public double getTwoPointFieldGoalPercent() {
+        this.twoPointFieldGoalPercent = ((double)getTwoPointMade()/getTwoPointAttempts()) * 100;
         return twoPointFieldGoalPercent;
     }
 
@@ -86,6 +100,7 @@ public class Participants {
     }
 
     public double getThreePointFieldGoalPercent() {
+        this.ThreePointFieldGoalPercent = ((double)getThreePointMade()/getThreePointAttempts()) * 100;
         return ThreePointFieldGoalPercent;
     }
 

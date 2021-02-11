@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class League <T extends  Team> {
     private String leagueName;
@@ -21,6 +22,14 @@ public class League <T extends  Team> {
 
     public ArrayList<T> getTeamList() {
         return teamList;
+    }
+
+    public void displayTeams(){
+        System.out.printf("%-10s\t%10s\t%10s\t%10s\n","Team", "Wins", "Loss", "FG%");
+        Collections.sort(teamList);
+        for(int i = 0; i < teamList.size(); i++){
+            System.out.printf("%-10s\t%10d\t%10d\t%10.2f\n", teamList.get(i).getTeamName(), teamList.get(i).getWins(), teamList.get(i).getLoss(), teamList.get(i).getFieldGoalPercent());
+        }
     }
 }
 
