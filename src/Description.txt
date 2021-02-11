@@ -1,0 +1,9 @@
+A  program where a league simulates an nba season.
+The league consists of 30 teams. Each team should have a
+    1. String name
+    2. Game games
+    3. int wins
+    4. int loss
+    5. double fieldGoal%
+    6  double 3pointShot
+    7. double 2pointShot
